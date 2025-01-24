@@ -31,4 +31,7 @@ public class ImageFXController {
         imgPicture.setImage(image);
         imgNewPicture.setImage(grayScaleFilter.apply(file));
     }
+    @FXML
+
+
 }
