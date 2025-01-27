@@ -1,7 +1,11 @@
 package edu.okcu.imagefx;
 
 import edu.okcu.imagefx.filters.GrayScaleFilter;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
@@ -16,6 +20,7 @@ import java.io.IOException;
 
 public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
+
     @FXML
     private ImageView imgPicture;
     @FXML
@@ -31,4 +36,16 @@ public class ImageFXController {
         imgPicture.setImage(image);
         imgNewPicture.setImage(grayScaleFilter.apply(file));
     }
+
+    @FXML
+    private ComboBox cmbFilterSelect;
+
+    String [] filters = {"Grayscale", "Sepia", "Secret"};
+
+    public void initialize() {
+        ObservableList<String> list =
+                FXCollections.observableArrayList(filters);
+        cmbFilterSelect.setItems(list);
+    }
+
 }
