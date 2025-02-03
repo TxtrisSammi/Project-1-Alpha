@@ -50,7 +50,7 @@ public class SepiaFilter implements IFilter {
                 var newColor = (red + blue + green) / 3;
 
                 // Create an Integer for the new values
-                int newPixel = (alpha<<24) | (newColor<<16) | (newColor<<8) | newColor;
+                int newPixel = (alpha<<24) | (255) | (newColor<<8) | newColor;
                 img.setRGB(x, y, newPixel);
             }
         }

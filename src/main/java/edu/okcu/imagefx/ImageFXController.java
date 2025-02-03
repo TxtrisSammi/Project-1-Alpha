@@ -1,6 +1,7 @@
 package edu.okcu.imagefx;
 
 import edu.okcu.imagefx.filters.GrayScaleFilter;
+import edu.okcu.imagefx.filters.SepiaFilter;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
+    SepiaFilter sepiaFilter = new SepiaFilter();
 
     @FXML
     private ImageView imgPicture;
@@ -33,14 +35,32 @@ public class ImageFXController {
 
         Image image = new Image(file.toURI().toString());
 
-        imgPicture.setImage(image);
-        imgNewPicture.setImage(grayScaleFilter.apply(file));
+        String selectedFilter = (String) cmbFilterSelect.getValue();
+
+        switch (selectedFilter) {
+            case "Sepia":
+                imgPicture.setImage(image);
+                imgNewPicture.setImage(sepiaFilter.apply(file));
+                break;
+            case "Grayscale":
+                imgPicture.setImage(image);
+                imgNewPicture.setImage(grayScaleFilter.apply(file));
+                break;
+            case "3rd Option":
+                imgPicture.setImage(image);
+
+                break;
+            default:
+                imgPicture.setImage(image);
+        }
+
+
     }
 
     @FXML
     private ComboBox cmbFilterSelect;
 
-    String [] filters = {"Grayscale", "Sepia", "Secret"};
+    String [] filters = {"Grayscale", "Sepia", "3rd Option"};
 
     public void initialize() {
         ObservableList<String> list =
