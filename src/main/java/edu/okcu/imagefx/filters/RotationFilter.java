@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class SepiaFilter implements IFilter {
+public class RotationFilter implements IFilter {
     @Override
     public BufferedImage apply(BufferedImage img) {
         for (int y = 0; y < img.getHeight(); y++) {
@@ -22,14 +22,10 @@ public class SepiaFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for GrayScale
-                var newRed = (red * 0.393) + (green * 0.769) + (blue * 0.189);
-                var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
-                var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
 
                 // Create an Integer for the new values
-                int newPixel =  ((alpha<<24) | ((int)newRed<<16) | ((int)newGreen<<8) | (int)newBlue);
-                img.setRGB(x, y, newPixel);
+                int newPixel = (alpha<<24) | (red<<16) | (green<<8) | blue;
+                img.setRGB(y, x, newPixel);
             }
         }
         return img;
@@ -48,14 +44,12 @@ public class SepiaFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for GrayScale
-                var newRed = (red * 0.393) + (green * 0.769) + (blue * 0.189);
-                var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
-                var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
+                int newPixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
 
-                // Create an Integer for the new values
-                int newPixel =  ((alpha<<24) | ((int)newRed<<16) | ((int)newGreen<<8) | (int)newBlue);
-                img.setRGB(x, y, newPixel);
+                if(x >= y) {
+                    img.setRGB(x, y, newPixel);
+                } else
+                    img.setRGB(y, x, newPixel);
             }
         }
 
