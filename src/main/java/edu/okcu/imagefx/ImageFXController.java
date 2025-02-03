@@ -1,6 +1,7 @@
 package edu.okcu.imagefx;
 
 import edu.okcu.imagefx.filters.GrayScaleFilter;
+import edu.okcu.imagefx.filters.Inverse;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
+    Inverse inverseFilter = new Inverse();
     @FXML
     private ImageView imgPicture;
     @FXML
@@ -30,8 +32,12 @@ public class ImageFXController {
 
         imgPicture.setImage(image);
         imgNewPicture.setImage(grayScaleFilter.apply(file));
+
+        imgPicture.setImage(image);
+        imgNewPicture.setImage(inverseFilter.apply(file));
+
     }
-    @FXML
+
 
 
 }

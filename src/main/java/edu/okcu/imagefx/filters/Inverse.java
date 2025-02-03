@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class BlackandWhite implements IFilter {
+public class Inverse implements IFilter {
     @Override
     public BufferedImage apply(BufferedImage img) {
         for (int y = 0; y < img.getHeight(); y++) {
@@ -22,11 +22,13 @@ public class BlackandWhite implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for BlackandWhite
-                var newColor = (red + blue + green) / 3;
+                // Calculation for Inverse
+                var newRed = (255 - red);
+                var newGreen = (255 - green);
+                var newBlue = (255 - blue);
 
                 // Create an Integer for the new values
-                int newPixel = (alpha<<24) | (newColor<<16) | (newColor<<8) | newColor;
+                int newPixel = (alpha<<24) | (newRed<<16) | (newGreen<<8) | newBlue;
                 img.setRGB(x, y, newPixel);
             }
         }
@@ -46,11 +48,13 @@ public class BlackandWhite implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for BlackandWhite
-                var newColor = (red + blue + green) / 3;
+                // Calculation for Inverse
+                var newRed = (255 - red);
+                var newGreen = (255 - green);
+                var newBlue = (255 - blue);
 
                 // Create an Integer for the new values
-                int newPixel = (alpha<<24) | (newColor<<16) | (newColor<<8) | newColor;
+                int newPixel = (alpha<<24) | (newRed<<16) | (newGreen<<8) | newBlue;
                 img.setRGB(x, y, newPixel);
             }
         }
