@@ -20,7 +20,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </HBox.margin></ImageView>
     </HBox>
-   <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
 
     <Button onAction="#onHelloButtonClick" text="Load" />
 </VBox>

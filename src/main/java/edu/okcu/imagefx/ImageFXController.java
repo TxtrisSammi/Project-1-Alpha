@@ -19,8 +19,8 @@ public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     SepiaFilter sepiaFilter = new SepiaFilter();
     RotationFilter rotationFilter = new RotationFilter();
-
     Inverse inverseFilter = new Inverse();
+
     @FXML
     private ImageView imgPicture;
     @FXML
@@ -49,14 +49,15 @@ public class ImageFXController {
                 imgPicture.setImage(image);
                 imgNewPicture.setImage(rotationFilter.apply(file));
                 break;
+            case "Inverse":
+                imgPicture.setImage(image);
+                imgNewPicture.setImage(inverseFilter.apply(file));
             default:
                 imgPicture.setImage(image);
         }
-        imgPicture.setImage(image);
-        imgNewPicture.setImage(grayScaleFilter.apply(file));
 
-        imgPicture.setImage(image);
-        imgNewPicture.setImage(inverseFilter.apply(file));
+
+
 
     }
 
