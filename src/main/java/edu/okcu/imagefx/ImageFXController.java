@@ -44,7 +44,7 @@ public class ImageFXController {
                 imgPicture.setImage(image);
                 imgNewPicture.setImage(grayScaleFilter.apply(file));
                 break;
-            case "3rd Option":
+            case "Flip":
                 imgPicture.setImage(image);
                 imgNewPicture.setImage(rotationFilter.apply(file));
                 break;
@@ -56,7 +56,7 @@ public class ImageFXController {
     @FXML
     private ComboBox cmbFilterSelect;
 
-    String [] filters = {"Grayscale", "Sepia", "3rd Option", "Inverse"};
+    String [] filters = {"Grayscale", "Sepia", "Flip", "Inverse"};
 
     public void initialize() {
         ObservableList<String> list =
