@@ -5,20 +5,30 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="319.0" prefWidth="504.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.okcu.imagefx.ImageFXController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="319.0" prefWidth="504.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.okcu.imagefx.ImageFXController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <HBox>
-        <ImageView fx:id="imgPicture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <HBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </HBox.margin></ImageView>
-        <ImageView fx:id="imgNewPicture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <HBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </HBox.margin></ImageView>
+    <HBox style="-fx-spacing: 15;">
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+              <ImageView fx:id="imgPicture" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+              <ImageView fx:id="imgNewPicture" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
     </HBox>
-
-    <Button onAction="#onHelloButtonClick" text="Load" />
+   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" />
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 15;">
+      <children>
+          <Button alignment="CENTER" onAction="#onLoadButtonClick" minWidth="60" text="Load" textAlignment="CENTER" />
+         <Button onAction="#onApplyButtonClick" mnemonicParsing="false" text="Apply" minWidth="60" textAlignment="CENTER" />
+      </children>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+   </HBox>
 </VBox>
