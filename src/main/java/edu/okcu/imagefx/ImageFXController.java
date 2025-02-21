@@ -4,6 +4,7 @@ import edu.okcu.imagefx.filters.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import edu.okcu.imagefx.filters.Inverse;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,10 +26,9 @@ public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     MeanFilter meanFilter = new MeanFilter();
     ConvolutionTest convolutionTest = new ConvolutionTest();
-    SepiaFilter sepiaFilter = new SepiaFilter();
-    RotationFilter rotationFilter = new RotationFilter();
+    Inverse inverse = new Inverse();
 
-    private final String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"}; //List of Filters
+    private final String[] filterChoices = {"Sepia", "Grayscale", "Inverse", "Rotate", "Michael", "ConvolutionTest"}; //List of Filters
     private File imageFile;
 
     @FXML
@@ -52,8 +52,8 @@ public class ImageFXController {
         return switch (filterName) {
             case "Sepia" -> sepiaFilter.apply(imageFile);
             case "Grayscale" -> grayScaleFilter.apply(imageFile);
-            case "Bryan" -> convolutionTest.apply(imageFile); //Replace with Inverse
-            case "Sammy" -> rotationFilter.apply(imageFile);
+            case "Inverse" -> inverse.apply(imageFile);
+            case "Rotate" -> rotationFilter.apply(imageFile);
             case "Michael" -> meanFilter.apply(imageFile);
             case "ConvolutionTest" -> convolutionTest.apply(imageFile);
             default -> null;
