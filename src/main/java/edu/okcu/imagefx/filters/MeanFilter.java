@@ -27,6 +27,10 @@ import java.io.IOException;
     with kernel size.
 
     *The filter may be very slow depending on image size as well
+
+    Sources:
+    https://medium.com/@sarves021999/noise-filtering-mean-median-mid-point-filter-72ab3be76da2
+    https://en.wikipedia.org/wiki/Geometric_mean_filter
  */
 
 public class MeanFilter implements IFilter {
@@ -56,6 +60,7 @@ public class MeanFilter implements IFilter {
                         // Check if the pixel is within the image bounds
                         // (As kernels may search outside the image for image border pixels)
                         if (pixelX >= 0 && pixelX < img.getWidth() && pixelY >= 0 && pixelY < img.getHeight()) {
+                            // Gets the pixel color values
                             int rgb = img.getRGB(pixelX, pixelY);
                             red += (rgb >> 16) & 0xFF;
                             green += (rgb >> 8) & 0xFF;

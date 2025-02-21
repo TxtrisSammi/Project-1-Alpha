@@ -3,25 +3,32 @@ package edu.okcu.imagefx;
 import edu.okcu.imagefx.filters.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     MeanFilter meanFilter = new MeanFilter();
+    ConvolutionTest convolutionTest = new ConvolutionTest();
 
-    private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael"};
+    private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"};
     private File imageFile;
 
     @FXML
@@ -32,7 +39,6 @@ public class ImageFXController {
     @FXML
     private ImageView imgNewPicture;
     private File selectedFile;
-
 
     public void initialize() {
         filterChoiceBox.setValue(filterChoices[0]);
@@ -66,7 +72,29 @@ public class ImageFXController {
         } else if (filterName == "Sammy") {
         } else if (filterName == "Michael") {
             return meanFilter.apply(imageFile);
+        } else if (filterName =="ConvolutionTest") {
+            return convolutionTest.apply(imageFile);
         }
         return null;
+    }
+
+    public void onLeftLoadButtonClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("zoom.fxml"));
+            ZoomController zoomController = new ZoomController(imgPicture);
+            fxmlLoader.setController(zoomController);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Zoom Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+
+    public void onRightLoadButtonClick(ActionEvent actionEvent) {
     }
 }

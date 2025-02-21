@@ -10,22 +10,28 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <HBox style="-fx-spacing: 15;">
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <Pane prefHeight="200.0" prefWidth="250.0">
          <children>
-              <ImageView fx:id="imgPicture" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+              <ImageView fx:id="imgPicture" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <Pane prefHeight="200.0" prefWidth="250.0">
          <children>
-              <ImageView fx:id="imgNewPicture" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+              <ImageView fx:id="imgNewPicture" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
     </HBox>
-   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" />
+   <HBox alignment="CENTER" prefWidth="500.0" spacing="75">
+      <children>
+         <Button onAction="#onLeftLoadButtonClick" mnemonicParsing="false" text="Zoom" />
+         <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" />
+         <Button onAction="#onRightLoadButtonClick" mnemonicParsing="false" text="Zoom" />
+      </children>
+   </HBox>
    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 15;">
       <children>
-          <Button alignment="CENTER" onAction="#onLoadButtonClick" minWidth="60" text="Load" textAlignment="CENTER" />
-         <Button onAction="#onApplyButtonClick" mnemonicParsing="false" text="Apply" minWidth="60" textAlignment="CENTER" />
+          <Button alignment="CENTER" minWidth="60" onAction="#onLoadButtonClick" text="Load" textAlignment="CENTER" />
+         <Button minWidth="60" mnemonicParsing="false" onAction="#onApplyButtonClick" text="Apply" textAlignment="CENTER" />
       </children>
       <opaqueInsets>
          <Insets />
