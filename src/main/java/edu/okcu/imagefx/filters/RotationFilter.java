@@ -10,28 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class RotationFilter implements IFilter {
-    @Override
-    public BufferedImage apply(BufferedImage img) {
-        for (int y = 0; y < img.getHeight(); y++) {
-            for (int x = 0; x < img.getWidth(); x++) {
-                int pixel = img.getRGB(x, y);
-                Color color = new Color(pixel);
 
-                int alpha = color.getAlpha();
-                int red = color.getRed();
-                int green = color.getGreen();
-                int blue = color.getBlue();
-
-
-                // Create an Integer for the new values
-                int newPixel = (alpha<<24) | (red<<16) | (green<<8) | blue;
-                img.setRGB(y, x, newPixel);
-            }
-        }
-        return img;
-    }
-
-    public javafx.scene.image.Image apply(File file) throws IOException {
+    public Image apply(File file) throws IOException {
         BufferedImage img = ImageIO.read(file);
 
         for (int y = 0; y < img.getHeight(); y++) {

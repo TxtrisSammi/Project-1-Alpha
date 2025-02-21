@@ -19,11 +19,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImageFXController {
+    SepiaFilter sepiaFilter = new SepiaFilter();
+    RotationFilter rotationFilter = new RotationFilter();
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     MeanFilter meanFilter = new MeanFilter();
     ConvolutionTest convolutionTest = new ConvolutionTest();
 
-    private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"};
+    private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Rotation", "Michael", "ConvolutionTest"};
     private File imageFile;
 
     @FXML
@@ -61,10 +63,12 @@ public class ImageFXController {
 
     public Image applyFilter(String filterName) throws IOException {
         if (filterName == "Sepia") {
+            return sepiaFilter.apply(imageFile);
         } else if (filterName == "Grayscale") {
             return grayScaleFilter.apply(imageFile);
         } else if (filterName == "Bryan") {
-        } else if (filterName == "Sammy") {
+        } else if (filterName == "Rotation") {
+            return rotationFilter.apply(imageFile);
         } else if (filterName == "Michael") {
             return meanFilter.apply(imageFile);
         } else if (filterName =="ConvolutionTest") {
