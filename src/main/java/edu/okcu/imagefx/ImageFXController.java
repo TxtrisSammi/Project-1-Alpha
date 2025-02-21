@@ -22,11 +22,11 @@ import java.util.logging.Logger;
 
 public class ImageFXController {
     SepiaFilter sepiaFilter = new SepiaFilter();
-    RotationFilter rotationFilter = new RotationFilter();
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
+    Inverse inverse = new Inverse();
+    RotationFilter rotationFilter = new RotationFilter();
     MeanFilter meanFilter = new MeanFilter();
     ConvolutionTest convolutionTest = new ConvolutionTest();
-    Inverse inverse = new Inverse();
 
     private final String[] filterChoices = {"Sepia", "Grayscale", "Inverse", "Rotate", "Michael", "ConvolutionTest"}; //List of Filters
     private File imageFile;
