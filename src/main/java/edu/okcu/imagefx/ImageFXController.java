@@ -24,7 +24,19 @@ public class ImageFXController {
     private ImageView imgPicture;
     @FXML
     private ImageView imgNewPicture;
+    @FXML
+    private ComboBox cmbFilterSelect;
+
     private File selectedFile;
+    String [] filters = {"Grayscale", "Sepia", "Flip", "Inverse"}; //List of filters
+
+    //Set the list of filters as the options for the ComboBox
+    public void initialize() { 
+        ObservableList<String> list =
+                FXCollections.observableArrayList(filters);
+        cmbFilterSelect.setItems(list);
+    }
+    
     @FXML
     protected void onHelloButtonClick() throws IOException {
         FileChooser chooser = new FileChooser();
@@ -32,9 +44,10 @@ public class ImageFXController {
 
         Image image = new Image(file.toURI().toString());
 
-
-        String selectedFilter = (String) cmbFilterSelect.getValue();
-
+        //Set selectedFilter as the option selected in the ComboBox
+        String selectedFilter = (String) cmbFilterSelect.getValue(); 
+        
+        //Run the filter selected on the ComboBox
         switch (selectedFilter) {
             case "Sepia":
                 imgPicture.setImage(image);
@@ -49,19 +62,14 @@ public class ImageFXController {
                 imgNewPicture.setImage(rotationFilter.apply(file));
                 break;
             default:
+                //If no filter is selected, set imgPicture but don't set imgNewPicture
                 imgPicture.setImage(image);
         }
     }
 
-    @FXML
-    private ComboBox cmbFilterSelect;
+    
+   
 
-    String [] filters = {"Grayscale", "Sepia", "Flip", "Inverse"};
-
-    public void initialize() {
-        ObservableList<String> list =
-                FXCollections.observableArrayList(filters);
-        cmbFilterSelect.setItems(list);
-    }
+    
 
 }
