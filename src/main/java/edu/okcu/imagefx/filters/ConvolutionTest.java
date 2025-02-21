@@ -81,11 +81,13 @@ public class ConvolutionTest implements IFilter {
         BufferedImage result = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 
         float[] kernel = {
-                -1, -2, -1,
-                0, 0, 0,
-                1, 2, 1
+                1/273f, 4/273f, 7/273f, 4/273f, 1/273f,
+                4/273f, 16/273f, 26/273f, 16/273f, 4/273f,
+                7/273f, 26/273f, 41/273f, 26/273f, 7/273f,
+                4/273f, 16/273f, 26/273f, 16/273f, 4/273f,
+                1/273f, 4/273f, 7/273f, 4/273f, 1/273f
         };
-        int kernelSize = 3;
+        int kernelSize = 5;
         int kernelRadius = (kernelSize - 1) / 2;
 
         // Iterates over each pixel for the final image
