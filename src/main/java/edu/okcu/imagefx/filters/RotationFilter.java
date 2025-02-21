@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
 public class RotationFilter implements IFilter {
     public Image apply(File file) throws IOException {
+
         BufferedImage img = ImageIO.read(file);
 
         double halfHeight = img.getHeight() / 2.0;
