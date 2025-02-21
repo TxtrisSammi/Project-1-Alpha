@@ -17,12 +17,15 @@ public class Inverse implements IFilter {
                 int pixel = img.getRGB(x, y);
                 Color color = new Color(pixel);
 
+                //Initializes colors
+                //Fetches colors
                 int alpha = color.getAlpha();
                 int red = color.getRed();
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
                 // Calculation for Inverse
+                // Turns newColor < 0 / negative
                 var newRed = (255 - red);
                 var newGreen = (255 - green);
                 var newBlue = (255 - blue);
@@ -43,12 +46,15 @@ public class Inverse implements IFilter {
                 int pixel = img.getRGB(x, y);
                 Color color = new Color(pixel);
 
+                //Initializes colors
+                //Fetches colors
                 int alpha = color.getAlpha();
                 int red = color.getRed();
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
                 // Calculation for Inverse
+                // Turns newColor < 0 / negative
                 var newRed = (255 - red);
                 var newGreen = (255 - green);
                 var newBlue = (255 - blue);

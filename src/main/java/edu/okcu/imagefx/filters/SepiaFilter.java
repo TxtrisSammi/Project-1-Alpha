@@ -17,6 +17,8 @@ public class SepiaFilter implements IFilter {
                 int pixel = img.getRGB(x, y);
                 Color color = new Color(pixel);
 
+                //Initializes colors
+                //Fetches colors
                 int alpha = color.getAlpha();
                 int red = color.getRed();
                 int green = color.getGreen();
@@ -27,7 +29,7 @@ public class SepiaFilter implements IFilter {
                 var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
                 var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
                 
-               //set rgb to 255
+               //set rgb to 255 if rgb > 255
                 if (newRed > 255){
                     newRed = 255;
                 }
@@ -54,6 +56,8 @@ public class SepiaFilter implements IFilter {
                 int pixel = img.getRGB(x, y);
                 Color color = new Color(pixel);
 
+                //Initializes colors
+                //Fetches colors
                 int alpha = color.getAlpha();
                 int red = color.getRed();
                 int green = color.getGreen();
