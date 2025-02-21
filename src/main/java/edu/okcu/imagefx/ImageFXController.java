@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -25,29 +26,37 @@ public class ImageFXController {
     SepiaFilter sepiaFilter = new SepiaFilter();
     RotationFilter rotationFilter = new RotationFilter();
 
-    private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"};
+    private final String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"}; //List of Filters
     private File imageFile;
 
     @FXML
-    private ChoiceBox filterChoiceBox;
+    private ComboBox filterComboBox;
     @FXML
     private ImageView imgPicture;
     @FXML
     private ImageView imgNewPicture;
 
     private File selectedFile;
-    String [] filters = {"Grayscale", "Sepia", "Flip", "Inverse"}; //List of filters
 
     //Set the list of filters as the options for the ComboBox
     public void initialize() {
-        filterChoiceBox.setValue(filterChoices[0]);
+        filterComboBox.setValue(" ");
         ObservableList<String> items =
                 FXCollections.observableArrayList(filterChoices);
-        filterChoiceBox.setItems(items);
+        filterComboBox.setItems(items);
     }
 
-    //Set selectedFilter as the option selected in the ComboBox
-    String selectedFilter = (String) filterChoiceBox.getValue();
+    public Image applyFilter(String filterName) throws IOException {
+        return switch (filterName) {
+            case "Sepia" -> sepiaFilter.apply(imageFile);
+            case "Grayscale" -> grayScaleFilter.apply(imageFile);
+            case "Bryan" -> convolutionTest.apply(imageFile); //Replace with Inverse
+            case "Sammy" -> rotationFilter.apply(imageFile);
+            case "Michael" -> meanFilter.apply(imageFile);
+            case "ConvolutionTest" -> convolutionTest.apply(imageFile);
+            default -> null;
+        };
+    }
 
     @FXML
     protected void onLoadButtonClick() throws IOException {
@@ -61,20 +70,10 @@ public class ImageFXController {
 
     @FXML
     protected void onApplyButtonClick() throws IOException {
-        String filterChoice = (String) filterChoiceBox.getValue();
+        String filterChoice = (String) filterComboBox.getValue();
         if (imageFile != null) {
             imgNewPicture.setImage(applyFilter(filterChoice));
         }
-    }
-
-    public Image applyFilter(String filterName) throws IOException {
-        //Run the filter selected on the ComboBox
-        return switch (selectedFilter) {
-            case "Sepia" -> sepiaFilter.apply(imageFile);
-            case "Grayscale" -> grayScaleFilter.apply(imageFile);
-            case "Flip" -> rotationFilter.apply(imageFile);
-            default -> null;
-        };
     }
 
     public void onLeftLoadButtonClick(ActionEvent actionEvent) {
