@@ -7,6 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+    /*
+    There's a weird thing that happens sometimes when you hover over the "Apply" button where the text on it shifts for some reason
+    I can't figure out why this is happening or where the error is coming from. I'll keep trying to work on it, but if someone else could
+    take a look too, that would be great.
+    */
 public class ImageFXApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
