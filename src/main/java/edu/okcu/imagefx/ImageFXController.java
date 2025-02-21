@@ -5,6 +5,7 @@ import edu.okcu.imagefx.filters.RotationFilter;
 import edu.okcu.imagefx.filters.SepiaFilter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import edu.okcu.imagefx.filters.Inverse;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     SepiaFilter sepiaFilter = new SepiaFilter();
     RotationFilter rotationFilter = new RotationFilter();
+    Inverse inverseFilter = new Inverse();
 
     @FXML
     private ImageView imgPicture;
@@ -47,10 +49,20 @@ public class ImageFXController {
                 imgPicture.setImage(image);
                 imgNewPicture.setImage(rotationFilter.apply(file));
                 break;
+            case "Inverse":
+                imgPicture.setImage(image);
+                imgNewPicture.setImage(inverseFilter.apply(file));
             default:
                 imgPicture.setImage(image);
         }
+
+
+
+
     }
+
+
+
 
     @FXML
     private ComboBox cmbFilterSelect;

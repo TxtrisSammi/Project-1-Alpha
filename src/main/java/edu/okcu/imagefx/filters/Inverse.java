@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class SepiaFilter implements IFilter {
+public class Inverse implements IFilter {
     @Override
     public BufferedImage apply(BufferedImage img) {
         for (int y = 0; y < img.getHeight(); y++) {
@@ -24,24 +24,14 @@ public class SepiaFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for GrayScale
-                var newRed = (red * 0.393) + (green * 0.769) + (blue * 0.189);
-                var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
-                var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
-                
-               //set rgb to 255 if rgb > 255
-                if (newRed > 255){
-                    newRed = 255;
-                }
-                if (newGreen > 255){
-                    newGreen = 255;
-                }
-                if (newBlue > 255){
-                    newBlue = 255;
-                }
+                // Calculation for Inverse
+                // Turns newColor < 0 / negative
+                var newRed = (255 - red);
+                var newGreen = (255 - green);
+                var newBlue = (255 - blue);
 
                 // Create an Integer for the new values
-                int newPixel =  ((alpha<<24) | ((int)newRed<<16) | ((int)newGreen<<8) | (int)newBlue);
+                int newPixel = (alpha<<24) | (newRed<<16) | (newGreen<<8) | newBlue;
                 img.setRGB(x, y, newPixel);
             }
         }
@@ -63,24 +53,14 @@ public class SepiaFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for GrayScale
-                var newRed = (red * 0.393) + (green * 0.769) + (blue * 0.189);
-                var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
-                var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
-
-                //set rgb to 255
-                if (newRed > 255){
-                    newRed = 255;
-                }
-                if (newGreen > 255){
-                    newGreen = 255;
-                }
-                if (newBlue > 255){
-                    newBlue = 255;
-                }
+                // Calculation for Inverse
+                // Turns newColor < 0 / negative
+                var newRed = (255 - red);
+                var newGreen = (255 - green);
+                var newBlue = (255 - blue);
 
                 // Create an Integer for the new values
-                int newPixel =  ((alpha<<24) | ((int)newRed<<16) | ((int)newGreen<<8) | (int)newBlue);
+                int newPixel = (alpha<<24) | (newRed<<16) | (newGreen<<8) | newBlue;
                 img.setRGB(x, y, newPixel);
             }
         }
