@@ -22,30 +22,33 @@ public class ImageFXController {
     GrayScaleFilter grayScaleFilter = new GrayScaleFilter();
     MeanFilter meanFilter = new MeanFilter();
     ConvolutionTest convolutionTest = new ConvolutionTest();
+    SepiaFilter sepiaFilter = new SepiaFilter();
+    RotationFilter rotationFilter = new RotationFilter();
 
     private String[] filterChoices = {"Sepia", "Grayscale", "Bryan", "Sammy", "Michael", "ConvolutionTest"};
     private File imageFile;
 
     @FXML
     private ChoiceBox filterChoiceBox;
-
     @FXML
     private ImageView imgPicture;
     @FXML
     private ImageView imgNewPicture;
-    @FXML
-    private ComboBox cmbFilterSelect;
 
     private File selectedFile;
     String [] filters = {"Grayscale", "Sepia", "Flip", "Inverse"}; //List of filters
 
     //Set the list of filters as the options for the ComboBox
-    public void initialize() { 
-        ObservableList<String> list =
-                FXCollections.observableArrayList(filters);
-        cmbFilterSelect.setItems(list);
+    public void initialize() {
+        filterChoiceBox.setValue(filterChoices[0]);
+        ObservableList<String> items =
+                FXCollections.observableArrayList(filterChoices);
+        filterChoiceBox.setItems(items);
     }
-    
+
+    //Set selectedFilter as the option selected in the ComboBox
+    String selectedFilter = (String) filterChoiceBox.getValue();
+
     @FXML
     protected void onLoadButtonClick() throws IOException {
         FileChooser chooser = new FileChooser();
@@ -65,17 +68,13 @@ public class ImageFXController {
     }
 
     public Image applyFilter(String filterName) throws IOException {
-        if (filterName == "Sepia") {
-        } else if (filterName == "Grayscale") {
-            return grayScaleFilter.apply(imageFile);
-        } else if (filterName == "Bryan") {
-        } else if (filterName == "Sammy") {
-        } else if (filterName == "Michael") {
-            return meanFilter.apply(imageFile);
-        } else if (filterName =="ConvolutionTest") {
-            return convolutionTest.apply(imageFile);
-        }
-        return null;
+        //Run the filter selected on the ComboBox
+        return switch (selectedFilter) {
+            case "Sepia" -> sepiaFilter.apply(imageFile);
+            case "Grayscale" -> grayScaleFilter.apply(imageFile);
+            case "Flip" -> rotationFilter.apply(imageFile);
+            default -> null;
+        };
     }
 
     public void onLeftLoadButtonClick(ActionEvent actionEvent) {
@@ -96,33 +95,6 @@ public class ImageFXController {
     }
 
     public void onRightLoadButtonClick(ActionEvent actionEvent) {
+
     }
-        //Set selectedFilter as the option selected in the ComboBox
-        String selectedFilter = (String) cmbFilterSelect.getValue(); 
-        
-        //Run the filter selected on the ComboBox
-        switch (selectedFilter) {
-            case "Sepia":
-                imgPicture.setImage(image);
-                imgNewPicture.setImage(sepiaFilter.apply(file));
-                break;
-            case "Grayscale":
-                imgPicture.setImage(image);
-                imgNewPicture.setImage(grayScaleFilter.apply(file));
-                break;
-            case "Flip":
-                imgPicture.setImage(image);
-                imgNewPicture.setImage(rotationFilter.apply(file));
-                break;
-            default:
-                //If no filter is selected, set imgPicture but don't set imgNewPicture
-                imgPicture.setImage(image);
-        }
-    }
-
-    
-   
-
-    
-
 }
