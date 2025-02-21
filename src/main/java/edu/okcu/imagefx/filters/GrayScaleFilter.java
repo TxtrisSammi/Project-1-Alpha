@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class GrayScaleFilter implements IFilter {
-
     public Image apply(File file) throws IOException {
         BufferedImage img = ImageIO.read(file);
 
