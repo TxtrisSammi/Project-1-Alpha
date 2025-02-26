@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/*
+bug when you hit the load button after uploading an image and do a filter
+ */
+
 public class ImageFXApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
