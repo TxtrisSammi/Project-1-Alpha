@@ -28,6 +28,7 @@ public class Inverse implements IFilter {
 
                 // Calculation for Inverse
                 // Turns newColor < 0 / negative
+                // source for calculation https://www.homeandlearn.co.uk/extras/image/image-invert-colors.html#:~:text=To%20get%20the%20inverted%20colour,sort%20of%20green/blue%20colour.
                 var newRed = (255 - red);
                 var newGreen = (255 - green);
                 var newBlue = (255 - blue);
