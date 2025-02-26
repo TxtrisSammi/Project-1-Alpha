@@ -11,8 +11,10 @@ import java.io.IOException;
 
 
 /*
+    Mean Filter
     Functions the same as the other filters but uses small 'kernels' to describe the
     area where pixels are averaged out to create the simulated blur affect.
+    Created by: Michael
 
     Approximate Example (3x3 Kernel) ~
     Color | Color | Color |

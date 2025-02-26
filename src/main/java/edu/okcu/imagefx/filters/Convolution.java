@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +12,7 @@ import java.io.IOException;
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Convolution Filter
+Created by: Michael
 Uses Kernels to execute and modify color values based on a preselected Kernel filter
 It does this by taking the color value, then multiplying it by a multiplier of the kernel.
 It adds each of these multiplier instances into a final sum which is the color value. And this
@@ -50,7 +50,7 @@ edgeDetectionKernel
     -1, 8, -1,
     -1, -1, -1
 
-sobelEdgeDetectionKernel
+sobelOperatorKernel
     -1, -2, -1,
     0, 0, 0,
     1, 2, 1
@@ -74,20 +74,20 @@ https://en.wikipedia.org/wiki/Kernel_(image_processing)
 https://www.cs.auckland.ac.nz/compsci373s1c/PatricesLectures/Convolution_1up.pdf
  */
 
-public class ConvolutionTest implements IFilter {
+public abstract class Convolution implements IFilter {
+    private int kernelSize;
+    private float[] kernel;
+
+    protected Convolution(int kernelSize, float[] kernel) {
+        this.kernelSize = kernelSize;
+        this.kernel = kernel;
+    }
+
 
     public Image apply(File file) throws IOException {
         BufferedImage img = ImageIO.read(file);
         BufferedImage result = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 
-        float[] kernel = {
-                1/273f, 4/273f, 7/273f, 4/273f, 1/273f,
-                4/273f, 16/273f, 26/273f, 16/273f, 4/273f,
-                7/273f, 26/273f, 41/273f, 26/273f, 7/273f,
-                4/273f, 16/273f, 26/273f, 16/273f, 4/273f,
-                1/273f, 4/273f, 7/273f, 4/273f, 1/273f
-        };
-        int kernelSize = 5;
         int kernelRadius = (kernelSize - 1) / 2;
 
         // Iterates over each pixel for the final image
@@ -106,7 +106,7 @@ public class ConvolutionTest implements IFilter {
                         if (pixelX >= 0 && pixelX < img.getWidth() && pixelY >= 0 && pixelY < img.getHeight()) {
                             // Multiples color values by kernelMultipliers for each neighbor and adds to final color
                             int rgb = img.getRGB(pixelX, pixelY);
-                            int kernelIndex = (ky + kernelRadius) * kernelSize + (kx + kernelRadius);
+                            int kernelIndex = (ky + kernelRadius) * this.kernelSize + (kx + kernelRadius);
                             float weight = kernel[kernelIndex];
 
                             red += ((rgb >> 16) & 0xFF) * weight;
@@ -119,9 +119,9 @@ public class ConvolutionTest implements IFilter {
                 // Clamp the values to the range [0, 255]
                 // Why? Instances such as image sharpening can result
                 // in the accumulation adding to values exceeding 255
-                int newRed = (int) Math.min(Math.max(red, 0), 255);
-                int newGreen = (int) Math.min(Math.max(green, 0), 255);
-                int newBlue = (int) Math.min(Math.max(blue, 0), 255);
+                int newRed = Math.min(Math.max(red, 0), 255);
+                int newGreen = Math.min(Math.max(green, 0), 255);
+                int newBlue = Math.min(Math.max(blue, 0), 255);
 
                 // Set the new pixel value
                 int newRGB = (newRed << 16) | (newGreen << 8) | newBlue;
