@@ -12,8 +12,8 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <HBox prefHeight="288.0" prefWidth="515.0" style="-fx-spacing: 15;">
-        <ImageView fx:id="imgPicture" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="imgNewPicture" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="imgPicture" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="imgNewPicture" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
     </HBox>
    <HBox alignment="CENTER" prefWidth="500.0" spacing="75">
       <children>

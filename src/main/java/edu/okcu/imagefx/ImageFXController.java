@@ -26,9 +26,11 @@ public class ImageFXController {
     Inverse inverse = new Inverse();
     RotationFilter rotationFilter = new RotationFilter();
     MeanFilter meanFilter = new MeanFilter();
-    ConvolutionTest convolutionTest = new ConvolutionTest();
+    SobelOperatorFilter sobelFilter = new SobelOperatorFilter();
+    GaussianBlurFilter gaussianBlurFilter = new GaussianBlurFilter();
+    SharpenFilter sharpenFilter = new SharpenFilter();
 
-    private final String[] filterChoices = {"Sepia", "Grayscale", "Inverse", "Rotate", "Michael", "ConvolutionTest"}; //List of Filters
+    private final String[] filterChoices = {"Sepia", "Grayscale", "Inverse", "Rotate", "Mean", "Sobel", "Gaussian Blur", "Sharpen"}; //List of Filters
     private File imageFile;
 
     @FXML
@@ -54,8 +56,10 @@ public class ImageFXController {
             case "Grayscale" -> grayScaleFilter.apply(imageFile);
             case "Inverse" -> inverse.apply(imageFile);
             case "Rotate" -> rotationFilter.apply(imageFile);
-            case "Michael" -> meanFilter.apply(imageFile);
-            case "ConvolutionTest" -> convolutionTest.apply(imageFile);
+            case "Mean" -> meanFilter.apply(imageFile);
+            case "Sobel" -> sobelFilter.apply(imageFile);
+            case "Gaussian Blur" -> gaussianBlurFilter.apply(imageFile);
+            case "Sharpen" -> sharpenFilter.apply(imageFile);
             default -> null;
         };
     }
