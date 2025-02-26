@@ -65,13 +65,31 @@ public class ImageFXController {
     }
 
     @FXML
-    protected void onLoadButtonClick() throws IOException {
+    protected void onLoadButtonClick() {
+        /*
+        Stores previous Image and File to revert back to in case of a null selection
+        So if the user hits the load button then changes their mind, the image they had 
+        selected previously is the image the filters get applied to.
+         */
+        File oldImageFile = imageFile;
+        Image oldImage =  imgPicture.getImage();
+        
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(null);
         imageFile = file;
-
-        Image image = new Image(file.toURI().toString());
-        imgPicture.setImage(image);
+        
+        /*
+        If user successfully selects a file, set the file as the image.
+        If it runs into an error return to the previously selected image.
+        */
+        try {
+            Image image = new Image(file.toURI().toString());
+            imgPicture.setImage(image);
+        } catch (Exception e) {
+            System.out.println("No File Selected");
+            imgPicture.setImage(oldImage);
+            imageFile = oldImageFile; 
+        }  
     }
 
     @FXML
