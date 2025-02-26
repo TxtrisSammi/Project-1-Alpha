@@ -32,6 +32,7 @@ public class SepiaFilter implements IFilter {
                 var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
 
                 //set rgb to 255
+                //found this on StackOverFlow
                 if (newRed > 255){
                     newRed = 255;
                 }
