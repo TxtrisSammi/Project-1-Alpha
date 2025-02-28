@@ -26,12 +26,16 @@ public class Inverse implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for Inverse
-                // Turns newColor < 0 / negative
-                // source for calculation https://www.homeandlearn.co.uk/extras/image/image-invert-colors.html#:~:text=To%20get%20the%20inverted%20colour,sort%20of%20green/blue%20colour.
-                var newRed = (255 - red);
-                var newGreen = (255 - green);
-                var newBlue = (255 - blue);
+                /*
+                    Calculation for Inverse:
+                    deducts rgb values from 255 and saves the difference as the new rgb value
+                    Changes color (very important)
+                    source for calculation:
+                    https://www.homeandlearn.co.uk/extras/image/image-invert-colors.html#:~:text=To%20get%20the%20inverted%20colour,sort%20of%20green/blue%20colour.
+                 */
+                var newRed = 255 - red;
+                var newGreen = 255 - green;
+                var newBlue = 255 - blue;
 
                 // Create an Integer for the new values
                 int newPixel = (alpha<<24) | (newRed<<16) | (newGreen<<8) | newBlue;

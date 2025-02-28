@@ -26,13 +26,17 @@ public class SepiaFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
 
-                // Calculation for GrayScale
+                // Calculation for Sepia
                 var newRed = (red * 0.393) + (green * 0.769) + (blue * 0.189);
                 var newGreen =  (red * 0.349) + (green * 0.686) + (blue * 0.168);
                 var newBlue =  (red * 0.272) + (green * 0.534) + (blue * 0.131);
 
-                //set rgb to 255
-                //found this on StackOverFlow
+                /*
+                set rgb = 255 to create a cap for how high the rgb values can be
+                since rgb values can only be from 0-255
+                found this on StackOverFlow
+                https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created
+                 */
                 if (newRed > 255){
                     newRed = 255;
                 }
