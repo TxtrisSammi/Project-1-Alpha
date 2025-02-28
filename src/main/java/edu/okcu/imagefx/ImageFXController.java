@@ -1,24 +1,16 @@
 package edu.okcu.imagefx;
-
 import edu.okcu.imagefx.filters.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import edu.okcu.imagefx.filters.Inverse;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ImageFXController {
     SepiaFilter sepiaFilter = new SepiaFilter();
@@ -42,8 +34,10 @@ public class ImageFXController {
 
     private File selectedFile;
 
-    //Set the list of filters as the options for the ComboBox
+
+
     public void initialize() {
+        //Set the list of filters as the options for the ComboBox
         filterComboBox.setValue(" ");
         ObservableList<String> items =
                 FXCollections.observableArrayList(filterChoices);
@@ -51,6 +45,7 @@ public class ImageFXController {
     }
 
     public Image applyFilter(String filterName) throws IOException {
+        //Apply Filter based on the filterName parameter
         return switch (filterName) {
             case "Sepia" -> sepiaFilter.apply(imageFile);
             case "Grayscale" -> grayScaleFilter.apply(imageFile);
@@ -94,30 +89,11 @@ public class ImageFXController {
 
     @FXML
     protected void onApplyButtonClick() throws IOException {
+        //Gets selected filter in ComboBox
         String filterChoice = (String) filterComboBox.getValue();
         if (imageFile != null) {
+            //Sets imgNewPicture as applyFiler(filterChoice)
             imgNewPicture.setImage(applyFilter(filterChoice));
         }
-    }
-
-    public void onLeftLoadButtonClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("zoom.fxml"));
-            ZoomController zoomController = new ZoomController(imgPicture);
-            fxmlLoader.setController(zoomController);
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            Stage stage = new Stage();
-            stage.setTitle("Zoom Window");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
-    }
-
-    public void onRightLoadButtonClick(ActionEvent actionEvent) {
-
     }
 }
