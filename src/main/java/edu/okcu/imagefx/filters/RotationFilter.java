@@ -9,6 +9,18 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/*
+    To Find Coordinates for Pixel Rotation
+    Usually to rotate about the origin you would just multiply the x and y values by -1
+    However our grid starts at (0, 0) and ends at (img.getWidth() - 1, img.getHeight() - 1)
+    So since we're not rotating about the origin, we have to set the center as the origin
+    To do this I'm translating all the pixels half the width to the left and half the height down
+    Making the center of the image == (0, 0)
+    Then I perform rotation about the origin as normal by multiplying the "newx" and "newy" by -1
+    Then I perform the opposite of the translation I did to bring the center of the image to the origin
+    i.e I translate all the pixels to the right half the width and up half the height
+*/
+
 public class RotationFilter implements IFilter {
     public Image apply(File file) throws IOException {
 
@@ -32,18 +44,6 @@ public class RotationFilter implements IFilter {
                 int green = color.getGreen();
                 int blue = color.getBlue();
                 int newPixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
-
-
-                /*  To Find Coordinates for Pixel Rotation
-                    Usually to rotate about the origin you would just multiply the x and y values by -1
-                    However our grid starts at (0, 0) and ends at (img.getWidth() - 1, img.getHeight() - 1)
-                    So since we're not rotating about the origin, we have to set the center as the origin
-                    To do this I'm translating all the pixels half the width to the left and half the height down
-                    Making the center of the image == (0, 0)
-                    Then I perform rotation about the origin as normal by multiplying the "newx" and "newy" by -1
-                    Then I perform the opposite of the translation I did to bring the center of the image to the origin
-                    i.e I translate all the pixels to the right half the width and up half the height
-                */
 
                 //Translates pixel coordinates left and down by half the width and height
                 double newy = y - halfHeight;
