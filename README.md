@@ -1,2 +1,5 @@
 # Project-1-Alpha
-Created By: Bryan Dinh, Michael Hannan, and Samantha Morales
+Bryan Dinh: Sepia Filter, Inverse Filter 
+Michael Hannan: Convolution Class, Gaussian Blur Filter, Mean Filter, Sharpen Filter, Sobel Operator Filter, FXML
+Samantha Morales: Rotation Filter, FXML
+
