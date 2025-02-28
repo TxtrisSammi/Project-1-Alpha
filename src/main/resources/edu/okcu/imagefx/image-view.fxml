@@ -5,34 +5,34 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="319.0" prefWidth="504.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.okcu.imagefx.ImageFXController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <HBox prefHeight="288.0" prefWidth="515.0" style="-fx-spacing: 15;">
-      <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
-         <children>
-              <ImageView fx:id="imgPicture" fitHeight="350.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="500.0">
-         <children>
-              <ImageView fx:id="imgNewPicture" fitHeight="350.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </VBox>
-    </HBox>
-   <HBox alignment="CENTER" prefWidth="500.0" spacing="75">
-      <children>
-         <ComboBox fx:id="filterComboBox" prefWidth="150.0" />
-      </children>
-   </HBox>
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 15;">
-      <children>
-          <Button alignment="CENTER" minWidth="60" onAction="#onLoadButtonClick" text="Load IMG" textAlignment="CENTER" />
-         <Button alignment="CENTER" minWidth="60" mnemonicParsing="false" onAction="#onApplyButtonClick" text="Apply FX" textAlignment="CENTER" />
-      </children>
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-   </HBox>
+<VBox alignment="CENTER" fillWidth="false" prefHeight="319.0" prefWidth="504.0" spacing="20" style="-fx-background-color: #A2A7A5;" styleClass="container" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.okcu.imagefx.ImageFXController">
+   
+  <children>
+      <HBox prefHeight="288.0" prefWidth="515.0" style="-fx-spacing: 25;">
+        <VBox fx:id="imgPictureVbox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0">
+           <children>
+                <ImageView fx:id="imgPicture" fitHeight="350.0" pickOnBounds="true" preserveRatio="true" />
+           </children>
+        </VBox>
+        <VBox fx:id="imgNewPictureVbox" alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="500.0">
+           <children>
+                <ImageView fx:id="imgNewPicture" fitHeight="350.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: black; -fx-border-width: 3px;" />
+           </children>
+        </VBox>
+      </HBox>
+     <HBox alignment="CENTER" prefWidth="500.0" spacing="75">
+        <children>
+           <ComboBox fx:id="filterComboBox" prefWidth="250.0" style="-fx-font-family: Verdana, Geneva, Tahoma, sans-serif; -fx-background-color: #DDDDD; -fx-font-weight: Bold; -fx-border-color: Black; -fx-border-width: 3px; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-insets: -1 -1 -1 -1; -fx-font-size: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" styleClass="container" />
+        </children>
+     </HBox>
+     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" style="-fx-spacing: 25;">
+        <children>
+            <Button alignment="CENTER" minHeight="90" minWidth="150" onAction="#onLoadButtonClick" style="-fx-font-family: Verdana, Geneva, Tahoma, sans-serif; -fx-background-color: #DDDDD; -fx-font-weight: Bold; -fx-border-color: Black; -fx-border-width: 4px; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-insets: -1 -1 -1 -1; -fx-font-size: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Load IMG" textAlignment="CENTER" />
+           <Button alignment="CENTER" minHeight="90" minWidth="150" mnemonicParsing="false" onAction="#onApplyButtonClick" style="-fx-font-family: Verdana, Geneva, Tahoma, sans-serif; -fx-background-color: #DDDDD; -fx-font-weight: Bold; -fx-border-color: Black; -fx-border-width: 4px; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-insets: -1 -1 -1 -1; -fx-font-size: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Apply FX" textAlignment="CENTER" />
+        </children>
+        <opaqueInsets>
+           <Insets />
+        </opaqueInsets>
+     </HBox>
+  </children>
 </VBox>

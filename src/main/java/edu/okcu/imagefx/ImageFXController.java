@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -30,7 +31,11 @@ public class ImageFXController {
     @FXML
     private ImageView imgPicture;
     @FXML
+    private VBox imgPictureVbox;
+    @FXML
     private ImageView imgNewPicture;
+    @FXML
+    private VBox imgNewPictureVbox;
 
     private File selectedFile;
 
@@ -80,6 +85,7 @@ public class ImageFXController {
         try {
             Image image = new Image(file.toURI().toString());
             imgPicture.setImage(image);
+            imgPictureVbox.setStyle("-fx-border-color: black; -fx-border-width: 5px; -fx-border-insets: -5 -5 -5 -5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 25, 0, 0, 0);");
         } catch (Exception e) {
             System.out.println("No File Selected");
             imgPicture.setImage(oldImage);
@@ -94,6 +100,7 @@ public class ImageFXController {
         if (imageFile != null) {
             //Sets imgNewPicture as applyFiler(filterChoice)
             imgNewPicture.setImage(applyFilter(filterChoice));
+            imgNewPictureVbox.setStyle("-fx-border-color: black; -fx-border-width: 5px; -fx-border-insets: -5 -5 -5 -5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 25, 0, 0, 0);");
         }
     }
 }
